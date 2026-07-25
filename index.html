@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StadiYums — Live Demo</title>
-<link rel="icon" type="image/png" href="favicon.png">
+<title>StadiYums Demo — Chukchansi Park</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
 <style>
   :root{
-    --navy:#0B1D33; --navy-deep:#071527; --orange:#FD490A; --orange-dim:#E44309;
-    --green:#307C27; --cream:#F5F3EF; --ink:#1A1A1A;
-    --line:rgba(11,29,51,0.1);
+    --navy:#1B2A4A; --navy-deep:#101A30; --gold:#B8892E; --gold-bright:#D9A63E;
+    --red:#8C1D1D; --cream:#F3EEE4; --turf:#33502F; --ink:#1F1B16;
+    --line:rgba(31,27,22,0.1);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{font-family:'Inter',sans-serif; background:var(--cream); color:var(--ink); line-height:1.5;}
@@ -22,88 +21,76 @@
   button{font-family:'Inter',sans-serif; cursor:pointer; border:none;}
   .wrap{max-width:880px; margin:0 auto; padding:0 20px;}
 
-  header{background:var(--navy); color:var(--cream); padding:16px 0;}
+  header{background:var(--navy); color:var(--cream); padding:18px 0;}
   header .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;}
   .brand{display:flex; align-items:center; gap:10px;}
-  .brand img{width:42px; height:42px; border-radius:50%; display:block;}
-  .brand-copy{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
-  .brand-text{font-family:'Archivo Black'; font-size:18px;}
-  .brand-text span{color:var(--orange);}
-  .tagline-tag{font-family:'Space Mono'; font-size:11.5px; letter-spacing:0.06em; color:var(--orange); border:1px solid var(--accent-border); border-radius:100px; padding:5px 12px; text-transform:uppercase;}
-  .header-right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
-  .reset-btn{
-    font-family:'Space Mono'; font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    background:transparent; color:rgba(245,243,239,0.55); border:1px solid rgba(245,243,239,0.2);
-    border-radius:100px; padding:5px 12px; transition:color .15s ease, border-color .15s ease;
-  }
-  .reset-btn:hover{color:var(--cream); border-color:rgba(245,243,239,0.45);}
-  .powered-by-nav{
-    font-family:'Space Mono'; font-size:9.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    color:rgba(245,243,239,0.45); white-space:nowrap;
-  }
-  .powered-by-nav span{color:rgba(245,243,239,0.65);}
-  .brand-logo{width:42px; height:42px; border-radius:50%; display:block; flex-shrink:0;}
-  .brand-logo svg{width:42px; height:42px; border-radius:50%; display:block;}
+  .brand svg{width:26px; height:26px;}
+  .brand-text{font-family:'Archivo Black'; font-size:17px;}
+  .brand-text span{color:var(--gold-bright);}
+  .venue-tag{font-family:'Space Mono'; font-size:12px; color:var(--gold-bright); border:1px solid rgba(217,166,62,0.4); border-radius:100px; padding:5px 12px;}
 
   .tabs{display:flex; gap:0; background:var(--navy-deep); border-radius:10px; padding:4px; margin:20px auto; max-width:340px;}
   .tab-btn{
-    flex:1; padding:10px 14px; border-radius:7px; background:transparent; color:rgba(245,243,239,0.6);
+    flex:1; padding:10px 14px; border-radius:7px; background:transparent; color:rgba(243,238,228,0.6);
     font-size:13.5px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:7px;
     transition:background .15s ease, color .15s ease;
   }
-  .tab-btn.active{background:var(--orange); color:#fff;}
+  .tab-btn.active{background:var(--gold-bright); color:var(--navy-deep);}
   .tab-btn i{font-size:16px;}
 
   main{padding:8px 0 80px;}
   .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px;}
-  .section-label{font-family:'Space Mono'; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--orange); font-weight:700; margin-bottom:10px;}
+  .section-label{font-family:'Space Mono'; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--red); font-weight:700; margin-bottom:10px;}
 
-  .seat-row{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;}
-  .field label{display:block; font-size:11.5px; font-family:'Space Mono'; color:#6b6459; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.04em;}
-  .field input{
-    width:100%; padding:13px 12px; border-radius:8px; border:1.5px solid var(--line); background:var(--input-bg);
-    font-family:'Space Mono'; font-size:16px; font-weight:700; color:var(--navy);
+  .seat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px;}
+  .field label{display:block; font-size:11.5px; font-family:'Space Mono'; color:#7a7263; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.04em;}
+  .field select{
+    width:100%; padding:11px 10px; border-radius:8px; border:1.5px solid var(--line); background:var(--cream);
+    font-family:'Space Mono'; font-size:14px; font-weight:700; color:var(--navy); appearance:none;
   }
-  .field input::placeholder{color:#a89f8c; font-weight:400;}
   .seat-preview{
     display:flex; align-items:center; gap:10px; background:var(--navy); color:var(--cream);
     border-radius:10px; padding:14px 16px; margin-bottom:24px; font-family:'Space Mono'; font-size:14px;
   }
-  .seat-preview i{color:var(--orange); font-size:20px;}
+  .seat-preview i{color:var(--gold-bright); font-size:20px;}
 
-  .menu-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .stand-group{margin-bottom:28px;}
+  .stand-name{font-size:12.5px; font-family:'Space Mono'; color:var(--turf); font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:6px;}
   .menu-item{
-    background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px;
-    display:flex; flex-direction:column; gap:10px;
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:14px 0; border-top:1px solid var(--line);
   }
-  .menu-item .icon-box{
-    width:100%; aspect-ratio:1.5/1; background:var(--cream); border-radius:9px;
-    display:flex; align-items:center; justify-content:center;
+  .item-thumb{
+    width:48px; height:48px; min-width:48px; border-radius:12px;
+    background:linear-gradient(160deg, var(--cream), #e9e2d0);
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-size:24px; line-height:1;
   }
-  .menu-item .icon-box svg{width:64%; height:64%;}
-  .menu-item .info h3{font-size:15px; font-weight:600; font-family:'Inter'; margin-bottom:2px;}
-  .menu-item .info p.price{font-family:'Space Mono'; font-size:13.5px; color:var(--navy); font-weight:700;}
-  .qty{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .menu-item .info{flex:1; min-width:0;}
+  .menu-item .info h3{font-size:15.5px; font-weight:600; font-family:'Inter'; margin-bottom:3px;}
+  .menu-item .info p{font-size:12.5px; color:#7a7263;}
+  .menu-item .price{font-family:'Space Mono'; font-size:14px; color:var(--navy); font-weight:700; min-width:56px; text-align:right;}
+  .qty{display:flex; align-items:center; gap:10px;}
   .qty button{
-    width:30px; height:30px; border-radius:50%; background:var(--cream); border:1.5px solid var(--line) !important;
-    color:var(--navy); font-size:16px; font-weight:700; display:flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:50%; background:var(--cream); border:1.5px solid var(--line) !important;
+    color:var(--navy); font-size:15px; font-weight:700; display:flex; align-items:center; justify-content:center;
   }
   .qty button:disabled{opacity:0.3; cursor:default;}
   .qty span{font-family:'Space Mono'; font-size:14px; min-width:16px; text-align:center; font-weight:700;}
 
   .cart-bar{
-    position:fixed; bottom:0; left:0; right:0; background:var(--orange); color:#fff;
+    position:fixed; bottom:0; left:0; right:0; background:var(--red); color:var(--cream);
     padding:16px 0; transform:translateY(110%); transition:transform .25s ease; z-index:40;
   }
   .cart-bar.show{transform:translateY(0);}
   .cart-bar .wrap{display:flex; align-items:center; justify-content:space-between;}
   .cart-bar .left{font-size:14px;}
   .cart-bar .left b{font-family:'Space Mono';}
-  .cart-bar button{background:#fff; color:var(--orange-dim); padding:12px 22px; border-radius:8px; font-weight:700; font-size:14.5px;}
+  .cart-bar button{background:var(--cream); color:var(--red); padding:12px 22px; border-radius:8px; font-weight:700; font-size:14.5px;}
 
   .tracker-seat{display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px;}
   .tracker-seat h2{font-size:24px; color:var(--navy);}
-  .tracker-seat .order-id{font-family:'Space Mono'; font-size:12px; color:#6b6459;}
+  .tracker-seat .order-id{font-family:'Space Mono'; font-size:12px; color:#7a7263;}
   .stepper{display:flex; margin-bottom:32px;}
   .stepper .step{flex:1; text-align:center; position:relative;}
   .stepper .step .dot{
@@ -111,74 +98,55 @@
     justify-content:center; margin:0 auto 10px; font-size:16px; position:relative; z-index:2;
     transition:background .3s ease, color .3s ease;
   }
-  .stepper .step.done .dot{background:var(--green); color:#fff;}
-  .stepper .step.current .dot{background:var(--orange); color:#fff; box-shadow:0 0 0 5px var(--accent-ring);}
+  .stepper .step.done .dot{background:var(--turf); color:#fff;}
+  .stepper .step.current .dot{background:var(--red); color:#fff; box-shadow:0 0 0 5px rgba(140,29,29,0.15);}
   .stepper .step .line{position:absolute; top:17px; left:-50%; width:100%; height:3px; background:#e7e1d3; z-index:1;}
   .stepper .step:first-child .line{display:none;}
-  .stepper .step.done .line{background:var(--green);}
-  .stepper .step span.label{font-size:11px; font-family:'Space Mono'; color:#6b6459; font-weight:700; text-transform:uppercase; letter-spacing:0.03em;}
+  .stepper .step.done .line{background:var(--turf);}
+  .stepper .step span.label{font-size:11px; font-family:'Space Mono'; color:#7a7263; font-weight:700; text-transform:uppercase; letter-spacing:0.03em;}
   .eta-banner{
-    background:rgba(48,124,39,0.08); border:1px solid rgba(48,124,39,0.2); border-radius:10px;
+    background:rgba(51,80,47,0.08); border:1px solid rgba(51,80,47,0.2); border-radius:10px;
     padding:16px 18px; display:flex; align-items:center; gap:12px; margin-bottom:24px;
   }
-  .eta-banner i{font-size:22px; color:var(--green);}
-  .eta-banner b{font-family:'Space Mono'; color:var(--green);}
+  .eta-banner i{font-size:22px; color:var(--turf);}
+  .eta-banner b{font-family:'Space Mono'; color:var(--turf);}
   .order-list .row{display:flex; justify-content:space-between; padding:9px 0; border-top:1px solid var(--line); font-size:14px;}
   .order-list .row:last-child{border-bottom:1px solid var(--line); font-weight:700;}
   .again-btn{width:100%; margin-top:20px; background:var(--navy); color:var(--cream); padding:14px; border-radius:9px; font-weight:700;}
 
   .runner-stats{display:flex; gap:12px; margin-bottom:22px; flex-wrap:wrap;}
   .stat-chip{flex:1; min-width:130px; background:var(--navy); color:var(--cream); border-radius:10px; padding:14px 16px;}
-  .stat-chip .n{font-family:'Space Mono'; font-size:22px; color:var(--orange); font-weight:700;}
-  .stat-chip .l{font-size:11px; color:rgba(245,243,239,0.65); text-transform:uppercase; letter-spacing:0.04em;}
-  .queue-title{font-family:'Space Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:#6b6459; margin:24px 0 12px; font-weight:700;}
+  .stat-chip .n{font-family:'Space Mono'; font-size:22px; color:var(--gold-bright); font-weight:700;}
+  .stat-chip .l{font-size:11px; color:rgba(243,238,228,0.65); text-transform:uppercase; letter-spacing:0.04em;}
+  .queue-title{font-family:'Space Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:#7a7263; margin:24px 0 12px; font-weight:700;}
   .order-card{
-    background:#fff; border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:10px;
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:10px;
     padding:16px 18px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
   }
-  .order-card.preparing{border-left-color:var(--orange);}
-  .order-card.on_the_way{border-left-color:var(--navy);}
-  .order-card.delivered{border-left-color:var(--green); opacity:0.6;}
-  .order-card .seat-block{font-family:'Space Mono'; font-weight:700; color:var(--navy); font-size:15px; min-width:130px;}
+  .order-card.preparing{border-left-color:var(--gold);}
+  .order-card.on_the_way{border-left-color:var(--red);}
+  .order-card.delivered{border-left-color:var(--turf); opacity:0.6;}
+  .order-card .seat-block{font-family:'Space Mono'; font-weight:700; color:var(--navy); font-size:15px; min-width:150px;}
   .order-card .items-block{font-size:13px; color:#5a5348; flex:1; min-width:160px;}
-  .order-card .meta{font-family:'Space Mono'; font-size:11.5px; color:#6b6459; min-width:80px;}
+  .order-card .meta{font-family:'Space Mono'; font-size:11.5px; color:#7a7263; min-width:96px; line-height:1.5;}
   .status-badge{
     font-family:'Space Mono'; font-size:11px; font-weight:700; text-transform:uppercase; padding:5px 10px;
     border-radius:100px; letter-spacing:0.03em;
   }
-  .status-badge.placed{background:var(--accent-tint-10); color:var(--orange-dim);}
-  .status-badge.preparing{background:var(--accent-tint-15); color:var(--orange-dim);}
-  .status-badge.on_the_way{background:rgba(11,29,51,0.1); color:var(--navy);}
-  .status-badge.delivered{background:rgba(48,124,39,0.12); color:var(--green);}
+  .status-badge.placed{background:rgba(140,29,29,0.1); color:var(--red);}
+  .status-badge.preparing{background:rgba(184,137,46,0.15); color:#8a6420;}
+  .status-badge.on_the_way{background:rgba(140,29,29,0.12); color:var(--red);}
+  .status-badge.delivered{background:rgba(51,80,47,0.12); color:var(--turf);}
   .advance-btn{background:var(--navy); color:var(--cream); padding:10px 16px; border-radius:8px; font-size:13px; font-weight:700; white-space:nowrap;}
   .advance-btn:disabled{background:#d8d2c4; color:#a89f8c; cursor:default;}
-  .empty-note{color:#6b6459; font-size:13.5px; padding:20px 0; text-align:center;}
+  .empty-note{color:#7a7263; font-size:13.5px; padding:20px 0; text-align:center;}
 
   .view{display:none;}
   .view.active{display:block;}
-  .field-error{font-family:'Space Mono'; font-size:11px; color:var(--orange-dim); margin:-10px 0 14px; font-weight:700;}
-  .field input.invalid{border-color:var(--orange);}
-  .vendor-toggle{
-    position:fixed; bottom:16px; left:16px; z-index:50;
-    font-family:'Space Mono'; font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    background:var(--navy); color:rgba(245,243,239,0.55); border:1px solid rgba(245,243,239,0.15);
-    border-radius:100px; padding:8px 14px; transition:bottom .25s ease, color .15s ease, border-color .15s ease;
-  }
-  .vendor-toggle:hover{color:var(--cream); border-color:rgba(245,243,239,0.35);}
-  .vendor-toggle.above-cart{bottom:88px;}
-  .powered-by{
-    text-align:center; padding:14px 20px 24px;
-    font-family:'Space Mono'; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-    color:#6b6459;
-  }
-  .powered-by span{color:var(--navy); opacity:0.7;}
-  @media (max-width:560px){
-    .menu-grid{grid-template-columns:1fr 1fr;}
+  @media (max-width:600px){
+    .seat-row{grid-template-columns:1fr 1fr 1fr; gap:8px;}
     .order-card{flex-direction:column; align-items:flex-start;}
     .advance-btn{width:100%;}
-  }
-  @media (max-width:400px){
-    .menu-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -186,11 +154,18 @@
 
 <header>
   <div class="wrap">
-    <div id="brandRoot" class="brand"></div>
-    <div class="header-right">
-      <button class="reset-btn" type="button" onclick="resetDemo()">Reset demo</button>
-      <div id="taglineRoot" class="tagline-tag"></div>
+    <div class="brand">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="20" y="120" width="120" height="20" rx="4" fill="#F3EEE4"/>
+        <rect x="40" y="90" width="80" height="20" rx="4" fill="#F3EEE4"/>
+        <rect x="60" y="60" width="40" height="20" rx="4" fill="#F3EEE4"/>
+        <line x1="62" y1="35" x2="78" y2="45" stroke="#D9A63E" stroke-width="4" stroke-linecap="round"/>
+        <line x1="72" y1="28" x2="86" y2="40" stroke="#D9A63E" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="100" cy="42" r="12" fill="#8C1D1D"/>
+      </svg>
+      <div class="brand-text">Stadi<span>Yums</span></div>
     </div>
+    <div class="venue-tag"><i class="ti ti-map-pin" aria-hidden="true"></i> Chukchansi Park · Fresno, CA — Demo</div>
   </div>
 </header>
 
@@ -206,152 +181,75 @@
   <div class="view" id="view-runner"></div>
 </main>
 
-<footer id="poweredByFooter" class="powered-by" hidden>Powered by <span>StadiYums</span></footer>
-
-<button id="vendorToggle" class="vendor-toggle" type="button" onclick="toggleVendorMode()">Grizzlies mode</button>
-
 <div class="cart-bar" id="cartBar">
   <div class="wrap">
-    <div class="left"><b id="cartCount">0</b> items &middot; <b id="cartTotal" class="mono">$0.00</b></div>
-    <button onclick="placeOrder()">Place order &rarr;</button>
+    <div class="left"><b id="cartCount">0</b> items · <b id="cartTotal" class="mono">$0.00</b></div>
+    <button onclick="placeOrder()">Place order →</button>
   </div>
 </div>
 
 <script>
-// ---------- Venue themes (white-label demos) ----------
-const GRIZZLIES_LOGO = '<img class="brand-logo" src="https://www.mlbstatic.com/team-logos/259.svg" alt="">';
-
-const THEMES = {
-  default: {
-    id: 'default',
-    name: 'StadiYums',
-    wordmark: 'Stadi<span>Yums</span>',
-    tagline: 'More game. Less lines.',
-    colors: {
-      navy: '#0B1D33',
-      navyDeep: '#071527',
-      cream: '#F5F3EF',
-      inputBg: '#F5F3EF',
-      accent: '#FD490A',
-      accentDim: '#E44309',
-      accentRing: 'rgba(253,73,10,0.15)',
-      accentBorder: 'rgba(253,73,10,0.4)',
-      accentTint10: 'rgba(253,73,10,0.1)',
-      accentTint15: 'rgba(253,73,10,0.15)',
-      line: 'rgba(11,29,51,0.1)',
-    },
-    logoHtml: '<img class="brand-logo" src="favicon.png" alt="">',
-    showPoweredBy: false,
-    pageTitle: 'StadiYums — Live Demo',
-  },
-  grizzly: {
-    id: 'grizzly',
-    name: 'Fresno Grizzlies',
-    wordmark: 'Fresno <span>Grizzlies</span>',
-    tagline: 'Growlifornia',
-    colors: {
-      navy: '#231F20',
-      navyDeep: '#1A1718',
-      cream: '#F5F3EF',
-      inputBg: '#FFFFFF',
-      accent: '#D10E47',
-      accentDim: '#B00C3D',
-      accentRing: 'rgba(209,14,71,0.18)',
-      accentBorder: 'rgba(209,14,71,0.45)',
-      accentTint10: 'rgba(209,14,71,0.1)',
-      accentTint15: 'rgba(209,14,71,0.15)',
-      line: 'rgba(35,31,32,0.1)',
-    },
-    logoHtml: GRIZZLIES_LOGO,
-    showPoweredBy: true,
-    pageTitle: 'Fresno Grizzlies — Chukchansi Park',
-  },
-};
-
-let activeThemeId = sessionStorage.getItem('stadiyums-theme') || 'default';
-let seatValidationError = false;
-
-function applyTheme(themeId){
-  const theme = THEMES[themeId] || THEMES.default;
-  activeThemeId = theme.id;
-  sessionStorage.setItem('stadiyums-theme', theme.id);
-  const root = document.documentElement;
-  const c = theme.colors;
-  root.style.setProperty('--navy', c.navy);
-  root.style.setProperty('--navy-deep', c.navyDeep);
-  root.style.setProperty('--cream', c.cream);
-  root.style.setProperty('--input-bg', c.inputBg);
-  root.style.setProperty('--orange', c.accent);
-  root.style.setProperty('--orange-dim', c.accentDim);
-  root.style.setProperty('--accent-ring', c.accentRing);
-  root.style.setProperty('--accent-border', c.accentBorder);
-  root.style.setProperty('--accent-tint-10', c.accentTint10);
-  root.style.setProperty('--accent-tint-15', c.accentTint15);
-  root.style.setProperty('--line', c.line);
-  document.title = theme.pageTitle;
-  renderHeader(theme);
-  document.getElementById('poweredByFooter').hidden = !theme.showPoweredBy;
-  const toggle = document.getElementById('vendorToggle');
-  toggle.textContent = theme.id === 'grizzly' ? 'Exit Grizzlies' : 'Grizzlies mode';
-  renderFan();
-  renderRunner();
-  updateVendorTogglePosition();
-}
-
-function renderHeader(theme){
-  const poweredBy = theme.showPoweredBy
-    ? '<div class="powered-by-nav">Powered by <span>StadiYums</span></div>'
-    : '';
-  document.getElementById('brandRoot').innerHTML = `${theme.logoHtml}<div class="brand-copy"><div class="brand-text">${theme.wordmark}</div>${poweredBy}</div>`;
-  document.getElementById('taglineRoot').textContent = theme.tagline;
-}
-
-function toggleVendorMode(){
-  applyTheme(activeThemeId === 'grizzly' ? 'default' : 'grizzly');
-}
-
-function resetDemo(){
-  cart = {};
-  activeOrder = null;
-  completed = [];
-  orderCounter = 1000;
-  seatValidationError = false;
-  ticket = {aisle:'12', seat:'8'};
-  queue = [];
-  seedQueue();
-  renderFan();
-  renderRunner();
-  updateVendorTogglePosition();
-}
-
-function updateVendorTogglePosition(){
-  const bar = document.getElementById('cartBar');
-  const toggle = document.getElementById('vendorToggle');
-  const fanActive = document.getElementById('view-fan').classList.contains('active');
-  toggle.classList.toggle('above-cart', fanActive && bar.classList.contains('show'));
-}
-
-// ---------- Food icons (flat, self-drawn, brand-neutral) ----------
-const ICONS = {
-  popcorn: `<svg viewBox="0 0 64 64"><path d="M18 26h28l-3 30a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4z" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><path d="M22 26l3 34M32 26v34M42 26l-3 34" stroke="#FD490A" stroke-width="2.5"/><circle cx="24" cy="18" r="6" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><circle cx="32" cy="14" r="7" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><circle cx="41" cy="19" r="6" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><circle cx="29" cy="21" r="5" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><circle cx="37" cy="22" r="5" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/></svg>`,
-  crackerjack: `<svg viewBox="0 0 64 64"><rect x="16" y="16" width="32" height="38" rx="2" fill="#0B1D33"/><rect x="16" y="16" width="32" height="10" fill="#FD490A"/><path d="M32 30l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z" fill="#F5F3EF"/><circle cx="14" cy="42" r="3.5" fill="#E8C39E" stroke="#0B1D33" stroke-width="1.5"/><circle cx="50" cy="46" r="3" fill="#E8C39E" stroke="#0B1D33" stroke-width="1.5"/><circle cx="12" cy="50" r="2.5" fill="#E8C39E" stroke="#0B1D33" stroke-width="1.5"/></svg>`,
-  drink: `<svg viewBox="0 0 64 64"><path d="M20 18h24l-3.5 38a3 3 0 0 1-3 2.8h-11a3 3 0 0 1-3-2.8z" fill="#F5F3EF" stroke="#0B1D33" stroke-width="2"/><rect x="18" y="14" width="28" height="6" rx="2" fill="#FD490A"/><rect x="30" y="6" width="4" height="14" rx="2" fill="#0B1D33" transform="rotate(10 32 13)"/><path d="M24 26h16M23 33h18M22.5 40h19" stroke="#0B1D33" stroke-width="1.5" opacity="0.25"/></svg>`,
-  pretzel: `<svg viewBox="0 0 64 64"><path d="M32 12c-11 0-18 8-18 17 0 7 5 12 11 12 4 0 7-2.5 7-6.5 0-3-2-5-4.5-5-2 0-3.5 1.3-3.5 3.3 0 1 .5 1.8 1.2 2.3-.5.2-1 .3-1.7.3-3.6 0-6-3-6-6.4C17.5 22 23 16.5 32 16.5S46.5 22 46.5 28.9c0 3.4-2.4 6.4-6 6.4-.7 0-1.2-.1-1.7-.3.7-.5 1.2-1.3 1.2-2.3 0-2-1.5-3.3-3.5-3.3-2.5 0-4.5 2-4.5 5 0 4 3 6.5 7 6.5 6 0 11-5 11-12 0-9-7-17-18-17z" fill="none" stroke="#B5652C" stroke-width="6" stroke-linecap="round"/><path d="M32 12c-11 0-18 8-18 17 0 7 5 12 11 12 4 0 7-2.5 7-6.5 0-3-2-5-4.5-5-2 0-3.5 1.3-3.5 3.3 0 1 .5 1.8 1.2 2.3-.5.2-1 .3-1.7.3-3.6 0-6-3-6-6.4C17.5 22 23 16.5 32 16.5S46.5 22 46.5 28.9c0 3.4-2.4 6.4-6 6.4-.7 0-1.2-.1-1.7-.3.7-.5 1.2-1.3 1.2-2.3 0-2-1.5-3.3-3.5-3.3-2.5 0-4.5 2-4.5 5 0 4 3 6.5 7 6.5 6 0 11-5 11-12 0-9-7-17-18-17z" fill="none" stroke="#E8C39E" stroke-width="1.5" stroke-linecap="round"/><circle cx="26" cy="20" r="1.1" fill="#0B1D33"/><circle cx="34" cy="18" r="1.1" fill="#0B1D33"/><circle cx="22" cy="27" r="1.1" fill="#0B1D33"/><circle cx="41" cy="24" r="1.1" fill="#0B1D33"/><circle cx="38" cy="32" r="1.1" fill="#0B1D33"/></svg>`,
-  hotdog: `<svg viewBox="0 0 64 64"><path d="M8 38c0-6 5-10 10-10h28c5 0 10 4 10 10s-5 10-10 10H18c-5 0-10-4-10-10z" fill="#F0DBA8" stroke="#0B1D33" stroke-width="2"/><rect x="12" y="32" width="40" height="13" rx="6.5" fill="#C25B3C" stroke="#0B1D33" stroke-width="2"/><path d="M14 36c4 4 5-4 9 0s5-4 9 0 5-4 9 0 5-4 9 0" fill="none" stroke="#FD490A" stroke-width="2" stroke-linecap="round"/></svg>`,
-  burger: `<svg viewBox="0 0 64 64"><path d="M12 26c0-8 9-14 20-14s20 6 20 14z" fill="#EFC17E" stroke="#0B1D33" stroke-width="2"/><rect x="10" y="26" width="44" height="5" rx="2" fill="#307C27"/><rect x="10" y="33" width="44" height="8" rx="2" fill="#6B3A1F" stroke="#0B1D33" stroke-width="1.5"/><rect x="10" y="43" width="44" height="4" fill="#FD490A" opacity="0.85"/><path d="M10 49c0-3 3-5 22-5s22 2 22 5-3 5-22 5-22-2-22-5z" fill="#F0DBA8" stroke="#0B1D33" stroke-width="2"/></svg>`,
-};
-
 const MENU = [
-  {id:'popcorn', name:'Popcorn', desc:'Fresh popped, buttered', price:6.0, icon:'popcorn'},
-  {id:'crackerjack', name:'Cracker Jacks', desc:'Caramel corn & peanuts', price:5.5, icon:'crackerjack'},
-  {id:'drink', name:'Fountain Drink', desc:'Souvenir cup, free refill', price:5.5, icon:'drink'},
-  {id:'pretzel', name:'Soft Pretzel', desc:'Warm, salted', price:6.5, icon:'pretzel'},
-  {id:'hotdog', name:'Hot Dog', desc:'All-beef, classic toppings', price:6.5, icon:'hotdog'},
-  {id:'burger', name:'Hamburger', desc:'Quarter-pound, grilled', price:9.0, icon:'burger'},
+  {id:'dog', stand:'Downtown Dogs', name:'Grizzlies Dog', desc:'All-beef, grilled onions', price:6.5, emoji:'🌭'},
+  {id:'brat', stand:'Downtown Dogs', name:'Andouille Sausage', desc:'Peppers & onions', price:8.0, emoji:'🌭'},
+  {id:'tritip', stand:'San Joaquin BBQ Co.', name:'Tri-Tip Sandwich', desc:'Santa Maria style, Central Valley classic', price:11.0, emoji:'🥪'},
+  {id:'nachos', stand:'San Joaquin BBQ Co.', name:'Loaded Nachos', desc:'Queso, jalapeno, pulled pork', price:9.5, emoji:'🧀'},
+  {id:'fries', stand:'Tower Taco Stand', name:'Garlic Fries', desc:'Fresh cut, parm & garlic', price:7.0, emoji:'🍟'},
+  {id:'taco', stand:'Tower Taco Stand', name:'Street Tacos (3)', desc:'Carne asada, salsa verde', price:10.0, emoji:'🌮'},
+  {id:'kettle', stand:'Sierra Kettle Corn', name:'Kettle Corn', desc:'Sweet & salty, made fresh', price:6.0, emoji:'🍿'},
+  {id:'dole', stand:'Sierra Kettle Corn', name:'Dole Whip', desc:'Pineapple soft serve', price:7.5, emoji:'🍍'},
+  {id:'soda', stand:'Valley Fresh Drinks', name:'Fountain Soda', desc:'Free refill souvenir cup', price:5.5, emoji:'🥤'},
+  {id:'lemonade', stand:'Valley Fresh Drinks', name:'Fresh Lemonade', desc:'Squeezed daily', price:6.5, emoji:'🍋'},
 ];
 
+const SECTIONS = Array.from({length:30}, (_,i)=>101+i);
+const ROWS = 'ABCDEFGHIJKLMN'.split('');
+const SEATS = Array.from({length:20}, (_,i)=>i+1);
+
+// Approximate concourse position of each stand, expressed as the section
+// it sits nearest to. Chukchansi Park's concourse wraps in a loop behind
+// sections 101-130, so we use that loop to model real walking distance.
+const STAND_LOCATIONS = {
+  'Valley Fresh Drinks': 103,   // near home plate / main gate
+  'Downtown Dogs': 108,         // first base side
+  'San Joaquin BBQ Co.': 116,   // right field concourse
+  'Tower Taco Stand': 123,      // center/left field concourse
+  'Sierra Kettle Corn': 129,    // third base side
+};
+
+const MIN_PER_SECTION = 0.35;  // walking minutes per section of concourse
+const PREP_BASE_MIN = 2;       // minutes to fire the first item
+const PREP_PER_STAND_MIN = 1;  // extra prep minutes for each additional stand in the order
+
+const itemStandLookup = Object.fromEntries(MENU.map(m=>[m.id, m.stand]));
+function itemStand(id){ return itemStandLookup[id]; }
+
+// Circular distance between two sections, walking the concourse loop
+// (shorter of clockwise vs. counter-clockwise), measured in "sections".
+function sectionDistance(a, b){
+  const n = SECTIONS.length;
+  const ai = SECTIONS.indexOf(a);
+  const bi = SECTIONS.indexOf(b);
+  const diff = Math.abs(ai - bi);
+  return Math.min(diff, n - diff);
+}
+
+// Estimates how long an order will take to reach a seat: prep time at the
+// stand(s) involved, plus a runner's walk from those stands to the seat's
+// section along the concourse loop.
+function estimateDelivery(order){
+  const stands = [...new Set(order.items.map(it=>itemStand(it.id)))];
+  const anchors = stands.map(s=>STAND_LOCATIONS[s]).sort((a,b)=>a-b);
+  let walk = 0;
+  for(let i=1;i<anchors.length;i++){ walk += sectionDistance(anchors[i-1], anchors[i]); }
+  walk += sectionDistance(anchors[anchors.length-1], order.section);
+  const prep = PREP_BASE_MIN + (stands.length-1)*PREP_PER_STAND_MIN;
+  const minutes = Math.max(3, Math.round(prep + walk*MIN_PER_SECTION));
+  return {minutes, distance: walk, stands};
+}
+
 let cart = {};
-let ticket = {aisle:'12', seat:'8'};
+let seat = {section:112, row:'F', seat:8};
 let activeOrder = null;
 let queue = [];
 let completed = [];
@@ -366,15 +264,26 @@ const STEPS = [
 
 function seedQueue(){
   const now = Date.now();
-  queue.push({id: orderCounter++, aisle:'7', seat:'14', items:[{id:'hotdog',qty:1},{id:'drink',qty:1}], status:'placed', placedAt: now - 40*1000});
-  queue.push({id: orderCounter++, aisle:'21', seat:'3', items:[{id:'burger',qty:1},{id:'popcorn',qty:1},{id:'drink',qty:2}], status:'preparing', placedAt: now - 3*60*1000});
+  const seed1 = {id: orderCounter++, section:104, row:'C', seat:14, items:[{id:'tritip',qty:1},{id:'soda',qty:1}], status:'placed', placedAt: now - 40*1000};
+  const seed2 = {id: orderCounter++, section:121, row:'H', seat:3, items:[{id:'nachos',qty:1},{id:'kettle',qty:1},{id:'lemonade',qty:2}], status:'preparing', placedAt: now - 3*60*1000};
+  [seed1, seed2].forEach(o=>{ const est = estimateDelivery(o); o.etaMinutes = est.minutes; o.etaDistance = est.distance; });
+  queue.push(seed1, seed2);
 }
 seedQueue();
 
 function money(n){ return '$' + n.toFixed(2); }
-function menuItem(id){ return MENU.find(m=>m.id===id); }
-function cartTotal(){ return Object.entries(cart).reduce((sum,[id,qty])=> sum + menuItem(id).price*qty, 0); }
+function itemName(id){ return MENU.find(m=>m.id===id).name; }
+function itemPrice(id){ return MENU.find(m=>m.id===id).price; }
+function itemEmoji(id){ return MENU.find(m=>m.id===id).emoji; }
+function cartTotal(){ return Object.entries(cart).reduce((sum,[id,qty])=> sum + itemPrice(id)*qty, 0); }
 function cartCount(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+
+function cartEtaNote(){
+  if(cartCount()===0) return '';
+  const pseudoOrder = { section: seat.section, items: Object.entries(cart).map(([id,qty])=>({id,qty})) };
+  const est = estimateDelivery(pseudoOrder);
+  return ` Est. delivery <b>~${est.minutes} min</b>.`;
+}
 
 function changeQty(id, delta){
   const cur = cart[id] || 0;
@@ -383,10 +292,18 @@ function changeQty(id, delta){
   renderFan();
 }
 
-function updateTicket(field, val){
-  ticket[field] = val;
-  seatValidationError = false;
-  renderFan();
+function renderSeatOptions(){
+  return {
+    section: SECTIONS.map(s=>`<option value="${s}" ${s==seat.section?'selected':''}>${s}</option>`).join(''),
+    row: ROWS.map(r=>`<option value="${r}" ${r===seat.row?'selected':''}>${r}</option>`).join(''),
+    seatn: SEATS.map(s=>`<option value="${s}" ${s==seat.seat?'selected':''}>${s}</option>`).join(''),
+  };
+}
+
+function groupByStand(){
+  const groups = {};
+  MENU.forEach(item=>{ groups[item.stand] = groups[item.stand] || []; groups[item.stand].push(item); });
+  return groups;
 }
 
 function renderFan(){
@@ -395,8 +312,8 @@ function renderFan(){
   if(activeOrder){
     const stepIdx = STEPS.findIndex(s=>s.key===activeOrder.status);
     const itemsHtml = activeOrder.items.map(it=>`
-      <div class="row"><span>${it.qty} x ${menuItem(it.id).name}</span><span class="mono">${money(menuItem(it.id).price*it.qty)}</span></div>
-    `).join('') + `<div class="row"><span>Total</span><span class="mono">${money(activeOrder.items.reduce((s,it)=>s+menuItem(it.id).price*it.qty,0))}</span></div>`;
+      <div class="row"><span>${itemEmoji(it.id)} ${it.qty} x ${itemName(it.id)}</span><span class="mono">${money(itemPrice(it.id)*it.qty)}</span></div>
+    `).join('') + `<div class="row"><span>Total</span><span class="mono">${money(activeOrder.items.reduce((s,it)=>s+itemPrice(it.id)*it.qty,0))}</span></div>`;
 
     const stepsHtml = STEPS.map((s,i)=>`
       <div class="step ${i<stepIdx?'done':''} ${i===stepIdx?'current':''}">
@@ -411,60 +328,64 @@ function renderFan(){
       : activeOrder.status==='preparing' ? 'The stand is firing up your order now.'
       : 'Your order just hit the kitchen queue.';
 
+    const totalSteps = STEPS.length - 1;
+    const remainingMin = activeOrder.status==='delivered' ? 0
+      : Math.max(1, Math.round(activeOrder.etaMinutes * (1 - stepIdx/totalSteps)));
+
     el.innerHTML = `
       <div class="card">
         <div class="tracker-seat">
           <div>
             <div class="section-label">Order status</div>
-            <h2>Aisle ${activeOrder.aisle} - Seat ${activeOrder.seat}</h2>
+            <h2>Sec ${activeOrder.section} - Row ${activeOrder.row} - Seat ${activeOrder.seat}</h2>
           </div>
           <span class="order-id mono">#SY-${activeOrder.id}</span>
         </div>
         <div class="stepper">${stepsHtml}</div>
         <div class="eta-banner">
           <i class="ti ${activeOrder.status==='delivered'?'ti-circle-check':'ti-clock'}"></i>
-          <div><b>${activeOrder.status==='delivered' ? 'Delivered' : '~' + Math.max(1, 8-stepIdx*2) + ' min'}</b> - ${etaText}</div>
+          <div><b>${activeOrder.status==='delivered' ? 'Delivered' : '~' + remainingMin + ' min'}</b> - ${etaText}</div>
         </div>
         <div class="order-list">${itemsHtml}</div>
         ${activeOrder.status==='delivered' ? '<button class="again-btn" onclick="orderAgain()">Order again</button>' : ''}
       </div>
     `;
-    updateVendorTogglePosition();
     return;
   }
 
+  const opts = renderSeatOptions();
+  const groups = groupByStand();
   let menuHtml = '';
-  MENU.forEach(item=>{
-    const qty = cart[item.id] || 0;
-    menuHtml += `
-      <div class="menu-item">
-        <div class="icon-box">${ICONS[item.icon]}</div>
-        <div class="info">
-          <h3>${item.name}</h3>
-          <p class="price mono">${money(item.price)}</p>
-        </div>
-        <div class="qty">
-          <button onclick="changeQty('${item.id}',-1)" ${qty===0?'disabled':''}>-</button>
-          <span>${qty}</span>
-          <button onclick="changeQty('${item.id}',1)">+</button>
-        </div>
-      </div>`;
+  Object.entries(groups).forEach(([stand, items])=>{
+    menuHtml += `<div class="stand-group"><div class="stand-name"><i class="ti ti-tent" aria-hidden="true"></i> ${stand}</div>`;
+    items.forEach(item=>{
+      const qty = cart[item.id] || 0;
+      menuHtml += `
+        <div class="menu-item">
+          <div class="item-thumb" aria-hidden="true">${item.emoji}</div>
+          <div class="info"><h3>${item.name}</h3><p>${item.desc}</p></div>
+          <div class="price mono">${money(item.price)}</div>
+          <div class="qty">
+            <button onclick="changeQty('${item.id}',-1)" ${qty===0?'disabled':''}>-</button>
+            <span>${qty}</span>
+            <button onclick="changeQty('${item.id}',1)">+</button>
+          </div>
+        </div>`;
+    });
+    menuHtml += `</div>`;
   });
-
-  const aisleInvalid = seatValidationError && !ticket.aisle;
-  const seatInvalid = seatValidationError && !ticket.seat;
 
   el.innerHTML = `
     <div class="card" style="margin-bottom:20px;">
-      <div class="section-label">Enter your ticket info</div>
+      <div class="section-label">Your seat</div>
       <div class="seat-row">
-        <div class="field"><label>Aisle #</label><input type="number" min="1" inputmode="numeric" class="${aisleInvalid?'invalid':''}" value="${ticket.aisle}" oninput="updateTicket('aisle', this.value)" placeholder="e.g. 12"></div>
-        <div class="field"><label>Seat #</label><input type="number" min="1" inputmode="numeric" class="${seatInvalid?'invalid':''}" value="${ticket.seat}" oninput="updateTicket('seat', this.value)" placeholder="e.g. 8"></div>
+        <div class="field"><label>Section</label><select onchange="seat.section=this.value">${opts.section}</select></div>
+        <div class="field"><label>Row</label><select onchange="seat.row=this.value">${opts.row}</select></div>
+        <div class="field"><label>Seat</label><select onchange="seat.seat=this.value">${opts.seatn}</select></div>
       </div>
-      ${seatValidationError ? '<p class="field-error">Enter your aisle and seat number to place an order.</p>' : ''}
-      <div class="seat-preview"><i class="ti ti-armchair"></i> We'll deliver straight to Aisle ${ticket.aisle || '—'}, Seat ${ticket.seat || '—'}.</div>
-      <div class="section-label">What can we bring you?</div>
-      <div class="menu-grid">${menuHtml}</div>
+      <div class="seat-preview"><i class="ti ti-armchair"></i> We'll deliver straight to Section ${seat.section}, Row ${seat.row}, Seat ${seat.seat}.${cartEtaNote()}</div>
+      <div class="section-label">Order from any stand in the park</div>
+      ${menuHtml}
     </div>
   `;
 
@@ -473,23 +394,20 @@ function renderFan(){
   document.getElementById('cartCount').textContent = count;
   document.getElementById('cartTotal').textContent = money(cartTotal());
   bar.classList.toggle('show', count>0);
-  updateVendorTogglePosition();
 }
 
 function placeOrder(){
   if(cartCount()===0) return;
-  if(!ticket.aisle || !ticket.seat){
-    seatValidationError = true;
-    renderFan();
-    return;
-  }
   const order = {
     id: orderCounter++,
-    aisle: ticket.aisle, seat: ticket.seat,
+    section: seat.section, row: seat.row, seat: seat.seat,
     items: Object.entries(cart).map(([id,qty])=>({id,qty})),
     status:'placed',
     placedAt: Date.now(),
   };
+  const est = estimateDelivery(order);
+  order.etaMinutes = est.minutes;
+  order.etaDistance = est.distance;
   queue.push(order);
   activeOrder = order;
   cart = {};
@@ -523,20 +441,22 @@ function renderRunner(){
   const el = document.getElementById('view-runner');
   const activeCount = queue.length;
   const deliveredToday = completed.length;
-  const avgTime = deliveredToday ? '6m' : '-';
+  const avgTime = deliveredToday
+    ? Math.round(completed.reduce((s,o)=>s+o.etaMinutes,0) / deliveredToday) + 'm'
+    : '-';
 
   let cardsHtml = '';
   if(queue.length===0){
     cardsHtml = '<div class="empty-note">Queue is clear - no open orders right now.</div>';
   } else {
     queue.slice().sort((a,b)=>a.placedAt-b.placedAt).forEach(order=>{
-      const itemsSummary = order.items.map(it=>`${it.qty}x ${menuItem(it.id).name}`).join(', ');
+      const itemsSummary = order.items.map(it=>`${itemEmoji(it.id)} ${it.qty}x ${itemName(it.id)}`).join(', ');
       const nextLabel = order.status==='placed' ? 'Start preparing' : order.status==='preparing' ? 'Send to seat' : 'Mark delivered';
       cardsHtml += `
         <div class="order-card ${order.status}">
-          <div class="seat-block"><i class="ti ti-armchair" aria-hidden="true"></i> Aisle ${order.aisle} - Seat ${order.seat}</div>
+          <div class="seat-block"><i class="ti ti-armchair" aria-hidden="true"></i> Sec ${order.section} - ${order.row}${order.seat}</div>
           <div class="items-block">${itemsSummary}</div>
-          <div class="meta">${elapsed(order.placedAt)}</div>
+          <div class="meta">${elapsed(order.placedAt)}<br>~${order.etaMinutes}m &middot; ${order.etaDistance} sections</div>
           <span class="status-badge ${order.status}">${statusLabel(order.status)}</span>
           <button class="advance-btn" onclick="advanceOrder(${order.id})">${nextLabel}</button>
         </div>
@@ -550,7 +470,7 @@ function renderRunner(){
       <div class="stat-chip"><div class="n mono">${deliveredToday}</div><div class="l">Delivered today</div></div>
       <div class="stat-chip"><div class="n mono">${avgTime}</div><div class="l">Avg. delivery time</div></div>
     </div>
-    <div class="queue-title">Concession queue</div>
+    <div class="queue-title">Concourse queue - Chukchansi Park</div>
     ${cardsHtml}
   `;
 }
@@ -561,10 +481,10 @@ function setTab(which){
   document.getElementById('tabFan').classList.toggle('active', which==='fan');
   document.getElementById('tabRunner').classList.toggle('active', which==='runner');
   document.getElementById('cartBar').classList.toggle('show', which==='fan' && cartCount()>0);
-  updateVendorTogglePosition();
 }
 
-applyTheme(activeThemeId);
+renderFan();
+renderRunner();
 setInterval(()=>{ renderRunner(); if(activeOrder) renderFan(); }, 1000);
 </script>
 
